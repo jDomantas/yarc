@@ -87,9 +87,21 @@ loadDataset dataset =
     |> Http.send (\result -> case result of
       Ok data ->
         LoadData data
+      
+      Err (Http.BadUrl _) ->
+        Error "unable to download dataset (bad request url)"
+
+      Err Http.Timeout ->
+        Error "unable to download dataset (timeout)"
         
-      Err e ->
-        Error (toString e))
+      Err Http.NetworkError ->
+        Error "unable to download dataset (network error)"
+        
+      Err (Http.BadPayload _ _) ->
+        Error <| "unable to download dataset (malformed response)"
+        
+      Err (Http.BadStatus r) ->
+        Error <| "unable to download dataset (response status: " ++ toString r.status.code ++ ")")
 
 
 init : (Model, Cmd Msg)
