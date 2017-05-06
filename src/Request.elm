@@ -130,7 +130,7 @@ viewAddRequest data model =
     defaultOption =
       Html.option
         [ Attrib.value "-- add item --"
-        , Attrib.selected <| Debug.log "here" True
+        , Attrib.selected True
         ]
         [ Html.text "-- add item --" ]
   in
