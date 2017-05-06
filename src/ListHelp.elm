@@ -116,3 +116,16 @@ join sepparator list =
         
         Nothing ->
           Just x
+
+
+extend : Int -> a -> List a -> List a
+extend length value list =
+  case list of
+    [] ->
+      if length <= 0 then
+        []
+      else
+        value :: extend (length - 1) value []
+  
+    x :: xs ->
+      x :: extend (length - 1) value xs

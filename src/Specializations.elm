@@ -108,7 +108,13 @@ view : FactorioData -> Specializations -> Html Msg
 view data spec =
   Html.div 
     [ Attrib.id "specList" ]
-    ((List.indexedMap (viewSpecialization data) spec) ++ [viewAddNew data spec])
+    ([ viewSpecializations data spec
+    -- for some reason property `Attrib.selected` does not
+    -- work if nothing changes before <selected> node
+    -- ¯\_(ツ)_/¯
+    ] ++ (if List.length spec % 2 == 0 then [ Html.div [] [] ] else []) ++
+    [ viewAddNew data spec
+    ])
 
 
 viewAddNew : FactorioData -> Specializations -> Html Msg
@@ -125,7 +131,13 @@ viewAddNew data spec =
           [ Attrib.value recipe.rawName
           , Attrib.selected False
           ]
-          [ Html.text recipe.name ]
+          [ Html.text <| String.concat
+            [ recipe.name
+            , " ("
+            , recipe.rawName
+            , ")"
+            ]
+          ]
 
     onChange = Events.onInput <| \value ->
       case ListHelp.find (\recipe -> recipe.rawName == value) data.recipes of
@@ -149,21 +161,40 @@ viewAddNew data spec =
       (defaultOption :: List.filterMap recipeOption data.recipes)
 
 
+viewSpecializations : FactorioData -> List Specialization -> Html Msg
+viewSpecializations data spec = 
+  Html.table [] (List.indexedMap (viewSpecialization data) spec)
+
+
 viewSpecialization : FactorioData -> Int -> Specialization -> Html Msg
 viewSpecialization data index spec =
-  Html.div 
-    [ Attrib.class "spec" ]
-    [ Html.p [ Attrib.class "specTitle" ] [ Html.text spec.recipe.name ]
-    , viewAssemblerSelection data index spec
-    , Html.div [ Attrib.class "specModuleList" ]
-      (Html.p [ Attrib.class "specModuleListTitle" ] [ Html.text "Modules" ] ::
-      List.indexedMap (viewModuleSelection data index spec) spec.modules)
-    , Html.button
-      [ Events.onClick (RemoveRecipe index)
-      , Attrib.class "removeSpec"
+  let
+    modules =
+      spec.modules
+      |> List.indexedMap (viewModuleSelection data index spec)
+      |> List.map (List.singleton >> Html.td [])
+      |> ListHelp.extend 4 (Html.td [] [])
+
+    name =
+      String.concat
+        [ spec.recipe.name
+        , " ("
+        , spec.recipe.rawName
+        , ")"
+        ]
+  in
+    Html.tr
+      [ Attrib.class "spec" ] <| List.concat
+      [ [ Html.td [] [ Html.text name ] ]
+      , [ Html.td [] [ viewAssemblerSelection data index spec ] ]
+      , modules
+      , [ Html.button
+          [ Events.onClick (RemoveRecipe index)
+          , Attrib.class "removeSpec"
+          ]
+          [ Html.text "Remove" ]
+        ]
       ]
-      [ Html.text "Remove" ]
-    ]
 
 
 viewAssemblerSelection : FactorioData -> Int -> Specialization -> Html Msg
