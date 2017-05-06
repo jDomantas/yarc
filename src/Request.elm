@@ -111,7 +111,13 @@ viewAddRequest data model =
           [ Attrib.value item.rawName
           , Attrib.selected False
           ]
-          [ Html.text item.name ]
+          [ Html.text <| String.concat
+            [ item.name
+            , " ("
+            , item.rawName
+            , ")"
+            ]
+          ]
 
     onChange = Events.onInput <| \value ->
       case ListHelp.find (\item -> item.rawName == value) data.items of
@@ -146,7 +152,12 @@ viewRequest : Int -> RawRequest -> Html Msg
 viewRequest index request =
   Html.tr []
     (List.map (List.singleton >> Html.td [])
-      [ Html.text request.item.name
+      [ Html.text <| String.concat
+        [ request.item.name
+        , " ("
+        , request.item.rawName
+        , ")"
+        ]
       , amountInput index request.amount
       , Html.button
         [ Events.onClick (RemoveRequest index)
