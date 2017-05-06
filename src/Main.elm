@@ -332,6 +332,9 @@ view model =
   in
     Html.div []
       [ viewDatasetSelect model
+      , Html.a
+        [ Attrib.href "https://github.com/jDomantas/yarc/blob/669f51ef1343f22a1258dff435be7840a8f777c8/README.md" ]
+        [ Html.text "About" ]
       , workingView
       ]
 
