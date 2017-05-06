@@ -1,0 +1,55 @@
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+details {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  padding-left: 1.5em;
+}
+
+.planItemModulesHeader,
+.planItemInputsHeader,
+.planItemOutputsHeader,
+.byproductsHeader,
+.resourcesHeader {
+  margin-bottom: 0;
+}
+
+body {
+  background-color: #FCFCFC;
+  color: #111111;
+  line-height: 1.4;
+}
+
+.planItem > *:not(:first-child) {
+  margin-left: 1.5em;
+}
+
+summary:focus {
+  outline: none;
+}
+
+td > select {
+  width: 100%;
+}
+
+h3 {
+  font-size: 1.1em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+#requests {
+  margin-bottom: 0.5em;
+}
+
+/*.number {
+  font-family: monospace;
+}*/
