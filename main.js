@@ -12394,8 +12394,23 @@ var _user$project$Main$view = function (model) {
 			_0: _user$project$Main$viewDatasetSelect(model),
 			_1: {
 				ctor: '::',
-				_0: workingView,
-				_1: {ctor: '[]'}
+				_0: A2(
+					_elm_lang$html$Html$a,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$href('https://github.com/jDomantas/yarc/blob/669f51ef1343f22a1258dff435be7840a8f777c8/README.md'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('About'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: workingView,
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 };
