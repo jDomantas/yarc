@@ -81,7 +81,7 @@ main = Html.program
 loadDataset : Dataset -> Cmd Msg
 loadDataset dataset =
   let
-    url = "/datasets/" ++ toString dataset ++ ".json"
+    url = "./datasets/" ++ toString dataset ++ ".json"
   in
     Http.get url Decoders.factorioData
     |> Http.send (\result -> case result of
