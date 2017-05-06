@@ -66,6 +66,7 @@ type CurrentQuery
 
 type Dataset
   = Factorio_0_15_9_normal
+  | Factorio_0_15_9_expensive
 
 
 main : Program Never Model Msg
@@ -109,6 +110,9 @@ datasetName dataset =
   case dataset of
     Factorio_0_15_9_normal ->
       "Factorio 0.15.9 (normal)"
+
+    Factorio_0_15_9_expensive ->
+      "Factorio 0.15.9 (expensive)"
 
 
 makePlanItem : Float -> ConcreteRecipe -> Float -> PlanItem
@@ -250,6 +254,7 @@ viewDatasetSelect model =
   let
     datasets =
       [ Factorio_0_15_9_normal
+      , Factorio_0_15_9_expensive
       ]
 
     datasetOption dataset =
