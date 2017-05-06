@@ -143,9 +143,19 @@ viewAddRequest data model =
 
 viewRequests : List RawRequest -> Html Msg
 viewRequests requests =
-  Html.table
-    [ Attrib.id "requestList" ]
-    (List.indexedMap viewRequest requests)
+  let
+    cell text =
+      Html.td [] [ Html.text text ]
+
+    headerRow =
+      Html.tr [] (List.map cell [ "Item", "Amount" ])
+  in
+    if List.length requests == 0 then
+      Html.table [] []
+    else
+      Html.table
+        [ Attrib.id "requestList" ]
+        (headerRow :: List.indexedMap viewRequest requests)
 
 
 viewRequest : Int -> RawRequest -> Html Msg

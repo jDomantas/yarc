@@ -50,6 +50,10 @@ h3 {
   margin-bottom: 0.5em;
 }
 
+#addRequest, #addSpec {
+  margin-top: 0.5em;
+}
+
 /*.number {
   font-family: monospace;
 }*/
