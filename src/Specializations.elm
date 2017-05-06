@@ -162,8 +162,20 @@ viewAddNew data spec =
 
 
 viewSpecializations : FactorioData -> List Specialization -> Html Msg
-viewSpecializations data spec = 
-  Html.table [] (List.indexedMap (viewSpecialization data) spec)
+viewSpecializations data spec =
+  let
+    cell text =
+      Html.td [] [ Html.text text ]
+
+    headerRow =
+      Html.tr [] (List.map cell [ "Recipe", "Assembler", "Modules" ])
+  in
+    if List.length spec == 0 then
+      Html.table [] []
+    else
+      Html.table
+        [ Attrib.id "specializationList" ]
+        (headerRow :: List.indexedMap (viewSpecialization data) spec)
 
 
 viewSpecialization : FactorioData -> Int -> Specialization -> Html Msg
