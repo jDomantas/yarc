@@ -12023,7 +12023,7 @@ var _user$project$Main$LoadData = function (a) {
 var _user$project$Main$loadDataset = function (dataset) {
 	var url = A2(
 		_elm_lang$core$Basics_ops['++'],
-		'/datasets/',
+		'./datasets/',
 		A2(
 			_elm_lang$core$Basics_ops['++'],
 			_elm_lang$core$Basics$toString(dataset),
@@ -12035,8 +12035,25 @@ var _user$project$Main$loadDataset = function (dataset) {
 			if (_p10.ctor === 'Ok') {
 				return _user$project$Main$LoadData(_p10._0);
 			} else {
-				return _user$project$Main$Error(
-					_elm_lang$core$Basics$toString(_p10._0));
+				switch (_p10._0.ctor) {
+					case 'BadUrl':
+						return _user$project$Main$Error('unable to download dataset (bad request url)');
+					case 'Timeout':
+						return _user$project$Main$Error('unable to download dataset (timeout)');
+					case 'NetworkError':
+						return _user$project$Main$Error('unable to download dataset (network error)');
+					case 'BadPayload':
+						return _user$project$Main$Error('unable to download dataset (malformed response)');
+					default:
+						return _user$project$Main$Error(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'unable to download dataset (response status: ',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_elm_lang$core$Basics$toString(_p10._0._0.status.code),
+									')')));
+				}
 			}
 		},
 		A2(_elm_lang$http$Http$get, url, _user$project$Decoders$factorioData));
@@ -12275,8 +12292,8 @@ var _user$project$Main$viewDatasetSelect = function (model) {
 							return _elm_lang$core$Native_Utils.crashCase(
 								'Main',
 								{
-									start: {line: 270, column: 11},
-									end: {line: 275, column: 56}
+									start: {line: 282, column: 11},
+									end: {line: 287, column: 56}
 								},
 								_p24)(
 								A2(_elm_lang$core$Basics_ops['++'], 'Invalid value: ', value));
