@@ -54,6 +54,10 @@ h3 {
   margin-top: 0.5em;
 }
 
+a {
+  display: block;
+}
+
 /*.number {
   font-family: monospace;
 }*/
