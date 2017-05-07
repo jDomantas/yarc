@@ -82,7 +82,7 @@ toConcreteRecipe spec =
       |> List.sum
     
     craftingTime =
-      spec.recipe.time / (spec.assembler.speed + speedBonus)
+      spec.recipe.time / (spec.assembler.speed * (1 + speedBonus))
 
     updatedResults =
       spec.recipe.results
