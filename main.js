@@ -9643,7 +9643,7 @@ var _user$project$Specializations$toConcreteRecipe = function (spec) {
 				return _.speedBonus;
 			},
 			_user$project$ListHelp$flatten(spec.modules)));
-	var craftingTime = spec.recipe.time / (spec.assembler.speed + speedBonus);
+	var craftingTime = spec.recipe.time / (spec.assembler.speed * (1 + speedBonus));
 	var prodBonus = _elm_lang$core$List$sum(
 		A2(
 			_elm_lang$core$List$map,
