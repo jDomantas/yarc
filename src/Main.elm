@@ -275,6 +275,8 @@ viewDatasetSelect model =
     datasets =
       [ Factorio_0_15_9_normal
       , Factorio_0_15_9_expensive
+      , Factorio_0_15_31_normal
+      , Factorio_0_15_31_expensive
       ]
 
     datasetOption dataset =
