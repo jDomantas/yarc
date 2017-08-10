@@ -11945,10 +11945,15 @@ var _user$project$Main$makePlanItem = F3(
 	});
 var _user$project$Main$datasetName = function (dataset) {
 	var _p6 = dataset;
-	if (_p6.ctor === 'Factorio_0_15_9_normal') {
-		return 'Factorio 0.15.9 (normal)';
-	} else {
-		return 'Factorio 0.15.9 (expensive)';
+	switch (_p6.ctor) {
+		case 'Factorio_0_15_9_normal':
+			return 'Factorio 0.15.9 (normal)';
+		case 'Factorio_0_15_9_expensive':
+			return 'Factorio 0.15.9 (expensive)';
+		case 'Factorio_0_15_31_normal':
+			return 'Factorio 0.15.31 (normal)';
+		default:
+			return 'Factorio 0.15.31 (expensive)';
 	}
 };
 var _user$project$Main$Model = F2(
@@ -12224,16 +12229,18 @@ var _user$project$Main$update = F2(
 				}
 		}
 	});
-var _user$project$Main$Factorio_0_15_9_expensive = {ctor: 'Factorio_0_15_9_expensive'};
-var _user$project$Main$Factorio_0_15_9_normal = {ctor: 'Factorio_0_15_9_normal'};
+var _user$project$Main$Factorio_0_15_31_expensive = {ctor: 'Factorio_0_15_31_expensive'};
+var _user$project$Main$Factorio_0_15_31_normal = {ctor: 'Factorio_0_15_31_normal'};
 var _user$project$Main$init = function () {
-	var initialDataset = _user$project$Main$Factorio_0_15_9_normal;
+	var initialDataset = _user$project$Main$Factorio_0_15_31_normal;
 	return {
 		ctor: '_Tuple2',
 		_0: {dataset: initialDataset, status: _user$project$Main$Loading},
 		_1: _user$project$Main$loadDataset(initialDataset)
 	};
 }();
+var _user$project$Main$Factorio_0_15_9_expensive = {ctor: 'Factorio_0_15_9_expensive'};
+var _user$project$Main$Factorio_0_15_9_normal = {ctor: 'Factorio_0_15_9_normal'};
 var _user$project$Main$viewDatasetSelect = function (model) {
 	var datasetOption = function (dataset) {
 		return A2(
@@ -12292,8 +12299,8 @@ var _user$project$Main$viewDatasetSelect = function (model) {
 							return _elm_lang$core$Native_Utils.crashCase(
 								'Main',
 								{
-									start: {line: 282, column: 11},
-									end: {line: 287, column: 56}
+									start: {line: 290, column: 11},
+									end: {line: 295, column: 56}
 								},
 								_p24)(
 								A2(_elm_lang$core$Basics_ops['++'], 'Invalid value: ', value));
