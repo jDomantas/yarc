@@ -67,6 +67,8 @@ type CurrentQuery
 type Dataset
   = Factorio_0_15_9_normal
   | Factorio_0_15_9_expensive
+  | Factorio_0_15_31_normal
+  | Factorio_0_15_31_expensive
 
 
 main : Program Never Model Msg
@@ -107,7 +109,7 @@ loadDataset dataset =
 init : (Model, Cmd Msg)
 init =
   let
-    initialDataset = Factorio_0_15_9_normal
+    initialDataset = Factorio_0_15_31_normal
   in
     (
       { dataset = initialDataset
@@ -125,6 +127,12 @@ datasetName dataset =
 
     Factorio_0_15_9_expensive ->
       "Factorio 0.15.9 (expensive)"
+
+    Factorio_0_15_31_normal ->
+      "Factorio 0.15.31 (normal)"
+
+    Factorio_0_15_31_expensive ->
+      "Factorio 0.15.31 (expensive)"
 
 
 makePlanItem : Float -> ConcreteRecipe -> Float -> PlanItem
