@@ -12269,7 +12269,15 @@ var _user$project$Main$viewDatasetSelect = function (model) {
 		_1: {
 			ctor: '::',
 			_0: _user$project$Main$Factorio_0_15_9_expensive,
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: _user$project$Main$Factorio_0_15_31_normal,
+				_1: {
+					ctor: '::',
+					_0: _user$project$Main$Factorio_0_15_31_expensive,
+					_1: {ctor: '[]'}
+				}
+			}
 		}
 	};
 	return A2(
@@ -12299,8 +12307,8 @@ var _user$project$Main$viewDatasetSelect = function (model) {
 							return _elm_lang$core$Native_Utils.crashCase(
 								'Main',
 								{
-									start: {line: 290, column: 11},
-									end: {line: 295, column: 56}
+									start: {line: 292, column: 11},
+									end: {line: 297, column: 56}
 								},
 								_p24)(
 								A2(_elm_lang$core$Basics_ops['++'], 'Invalid value: ', value));
